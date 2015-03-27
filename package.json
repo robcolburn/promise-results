@@ -1,6 +1,6 @@
 {
   "name": "promise-results",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Promise to resolve once collection of promises has resolve OR rejected",
   "main": "promise-results.js",
   "scripts": {
