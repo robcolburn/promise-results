@@ -1,10 +1,10 @@
 var results = require('../promise-results');
 describe('Promise Results', function() {
   it('Resolves a valid array', function() {
-    return results([2,3,4]).should.eventually.eql([2,3,4]);
+    return results([2,34]).should.eventually.eql([2,34]);
   });
   it('Resolves not accept a wrong array', function() {
-    return results([2,3,5]).should.eventually.not.eql([2,3,4]);
+    return results([2,35]).should.eventually.not.eql([2,34]);
   });
   it('Resolves a valid object', function() {
     return results({a:2,b:4}).should.eventually.eql({a:2,b:4});
@@ -12,9 +12,16 @@ describe('Promise Results', function() {
   it('Resolves a Promises array', function() {
     return results([
       Promise.resolve(2),
-      Promise.resolve(3),
-      Promise.resolve(4),
-    ]).should.eventually.eql([2,3,4]);
+      Promise.resolve(34)
+    ]).should.eventually.eql([2,34]);
+  });
+  it('Resolves for Promises/A compliant promises', function() {
+    return results([
+      Promise.resolve(2),
+      {then: function (s) {
+        s(34);
+      }},
+    ]).should.eventually.eql([2,34]);
   });
   it('Resolves a Promises array with rejections', function() {
     return results([
