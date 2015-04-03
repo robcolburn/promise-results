@@ -18,7 +18,7 @@ module.exports = function promiseAllKeys (collection) {
     var results = Array.isArray(collection) ? [] : {};
     if (length === 0) resolve(results);
     else array.forEach(function checkIn (key) {
-      if (collection[key] instanceof Promise)
+      if (collection[key] && typeof collection[key].then === 'function')
         collection[key].then(checkOut, reject);
       else
         checkOut(collection[key]);

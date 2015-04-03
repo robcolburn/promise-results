@@ -1,10 +1,10 @@
 var allKeys = require('../allKeys');
 describe('Promise allKeys', function() {
   it('Resolves a valid array', function() {
-    return allKeys([2,3,4]).should.eventually.eql([2,3,4]);
+    return allKeys([2,34]).should.eventually.eql([2,34]);
   });
   it('Resolves not accept a wrong array', function() {
-    return allKeys([2,3,5]).should.eventually.not.eql([2,3,4]);
+    return allKeys([2,35]).should.eventually.not.eql([2,34]);
   });
   it('Resolves a valid object', function() {
     return allKeys({a:2,b:4}).should.eventually.eql({a:2,b:4});
@@ -12,16 +12,30 @@ describe('Promise allKeys', function() {
   it('Resolves a Promises array', function() {
     return allKeys([
       Promise.resolve(2),
-      Promise.resolve(3),
-      Promise.resolve(4),
-    ]).should.eventually.eql([2,3,4]);
+      Promise.resolve(34),
+    ]).should.eventually.eql([2,34]);
+  });
+  it('Resolves for Promises/A compliant promises', function() {
+    return allKeys([
+      Promise.resolve(2),
+      {then: function (s) {
+        s(34);
+      }},
+    ]).should.eventually.eql([2,34]);
   });
   it('Rejects a Promises array with rejections', function() {
     return allKeys([
       Promise.resolve(2),
-      Promise.reject(3),
-      Promise.reject(4),
-    ]).should.be.rejectedWith(3);
+      Promise.reject(34),
+    ]).should.be.rejectedWith(34);
+  });
+  it('Rejects for Promises/A compliant promises', function() {
+    return allKeys([
+      Promise.resolve(2),
+      {then: function (s, e) {
+        e(34);
+      }},
+    ]).should.be.rejectedWith(34);
   });
   it('Resolves a Promises object', function() {
     return allKeys({
