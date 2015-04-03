@@ -1,6 +1,6 @@
 {
   "name": "promise-results",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Promise all results of a collection of promises whether they are resolved OR rejected.",
   "main": "promise-results.js",
   "scripts": {
