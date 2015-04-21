@@ -32,7 +32,7 @@ module.exports = function promiseResultSets (collection) {
         results.resolved[key] = value;
         resolved++;
         if (resolved === length) {
-          resolve(results.resolved);
+          resolve(results);
         }
         else if (resolved + rejected === length) {
           reject(results);
