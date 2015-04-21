@@ -40,7 +40,7 @@ resultsOf(pack).then(function (results) {
 
 # `allKeys`
 
-Note: If you just want to use objects, but want to keep `Promise.all` single
+If you just want to use objects, but want to keep `Promise.all` single
 rejection pattern, you can use the `allKeys` function instead.
 
 ## Example
@@ -65,5 +65,35 @@ pack.d = new Promise(function (resolve, reject) {
 
 allKeys(pack).catch(function (err) {
   assert(err instanceof Error);
+});
+```
+
+# `resultSet`
+
+If you like having a defined reject route, but still want access to
+your partial results and rejections. You can use `resultSet`.
+
+## Example
+
+```js
+var results = require('promise-results/resultSet');
+var pack = {};
+pack.a = Promise.resolve(2);
+pack.b = a.then(function (r) {
+  return new Promise(funciton (resolve, reject) {
+    setTimeout(function() {
+      resolve(r + 1);
+    }, 10);
+  })
+});
+pack.c = 42
+pack.d = new Promise(function (resolve, reject) {
+  setTimeout(function() {
+    reject(new Error('Some random failure'));
+  }, 10);
+});
+
+results(pack).catch(function (result) {
+  assert(result.d instanceof Error);
 });
 ```
