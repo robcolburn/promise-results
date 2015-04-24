@@ -4,7 +4,7 @@
   "description": "Promise all results of a collection of promises whether they are resolved OR rejected.",
   "main": "promise-results.js",
   "scripts": {
-    "lint": "eslint *.js",
+    "lint": "eslint *.js test/*.js",
     "test": "istanbul cover _mocha"
   },
   "repository": {
