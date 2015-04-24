@@ -11,6 +11,7 @@
  *   Rejections with the rejection.
  */
 module.exports = function promiseAllKeys (collection) {
+  "use strict";
   return new Promise(function(resolve, reject) {
     var array = Object.keys(collection);
     var length = array.length;
@@ -18,7 +19,7 @@ module.exports = function promiseAllKeys (collection) {
     var results = Array.isArray(collection) ? new Array(length) : {};
     if (length === 0) resolve(results);
     else array.forEach(function checkIn (key) {
-      if (collection[key] && typeof collection[key].then === 'function')
+      if (collection[key] && typeof collection[key].then === "function")
         collection[key].then(checkOut, reject);
       else
         checkOut(collection[key]);

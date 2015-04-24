@@ -3,15 +3,16 @@
  *
  * Loosely, based on promised-io/promise .allKeys, however:
  *   - Expects global Promise (es6-promise).
- *   - 
+ *   - Yields keyed object with collection of results & rejections.
  *
  * @param {object|array} collection
  *   The collection of promises to wait for.
  * @return Promise<object|array>
- *   Resolved with a collection of results.
+ *   Resolved with  keyed object with collection of results & rejections
  *   Rejects with a keyed object with collection of results & rejections.
  */
 module.exports = function promiseResultSets (collection) {
+  "use strict";
   return new Promise(function(resolve, reject) {
     var array = Object.keys(collection);
     var length = array.length;
@@ -23,7 +24,7 @@ module.exports = function promiseResultSets (collection) {
     };
     if (length === 0) resolve(results);
     else array.forEach(function checkIn (key) {
-      if (collection[key] && typeof collection[key].then === 'function')
+      if (collection[key] && typeof collection[key].then === "function")
         collection[key].then(resolveKey, rejectKey);
       else
         resolveKey(collection[key]);

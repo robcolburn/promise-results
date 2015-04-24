@@ -12,6 +12,7 @@
  *   By convention, rejections should be instances of are Errors.
  */
 module.exports = function promiseResults (collection) {
+  "use strict";
   return new Promise(function(resolve) {
     var array = Object.keys(collection);
     var length = array.length;
@@ -19,7 +20,7 @@ module.exports = function promiseResults (collection) {
     var results = Array.isArray(collection) ? new Array(length) : {};
     if (length === 0) resolve(results);
     else array.forEach(function checkIn (key) {
-      if (collection[key] && typeof collection[key].then === 'function')
+      if (collection[key] && typeof collection[key].then === "function")
         collection[key].then(checkOut, checkOut);
       else
         checkOut(collection[key]);
