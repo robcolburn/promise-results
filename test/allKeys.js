@@ -9,6 +9,12 @@ describe("Promise allKeys", function() {
   it("Resolves a valid object", function() {
     return allKeys({a: 2, b: 4}).should.eventually.eql({a: 2, b: 4});
   });
+  it("Resolves an empty array", function() {
+    return allKeys([]).should.eventually.eql([]);
+  });
+  it("Resolves an empty object", function() {
+    return allKeys({}).should.eventually.eql({});
+  });
   it("Resolves a Promises array", function() {
     return allKeys([
       Promise.resolve(2),

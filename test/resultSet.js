@@ -18,6 +18,18 @@ describe("Promise Result Sets", function() {
       rejected: {}
     });
   });
+  it("Resolves an empty array", function() {
+    return results([]).should.eventually.eql({
+      resolved: [],
+      rejected: []
+    });
+  });
+  it("Resolves an empty object", function() {
+    return results({}).should.eventually.eql({
+      resolved: {},
+      rejected: {}
+    });
+  });
   it("Resolves a Promises array", function() {
     return results([
       Promise.resolve(2),

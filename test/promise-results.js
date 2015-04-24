@@ -9,6 +9,12 @@ describe("Promise Results", function() {
   it("Resolves a valid object", function() {
     return results({a: 2, b: 4}).should.eventually.eql({a: 2, b: 4});
   });
+  it("Resolves an empty array", function() {
+    return results([]).should.eventually.eql([]);
+  });
+  it("Resolves an empty object", function() {
+    return results({}).should.eventually.eql({});
+  });
   it("Resolves a Promises array", function() {
     return results([
       Promise.resolve(2),
