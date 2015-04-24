@@ -4,7 +4,7 @@
   "description": "Promise all results of a collection of promises whether they are resolved OR rejected.",
   "main": "promise-results.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "istanbul cover _mocha"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,12 @@
     "chai": "^2.1.2",
     "chai-as-promised": "^4.3.0",
     "es6-promise": "^2.0.1",
+    "istanbul": "^0.3.13",
     "mocha": "^2.2.1"
+  },
+  "config": {
+    "ghooks": {
+      "pre-push": "npm test"
+    }
   }
 }
