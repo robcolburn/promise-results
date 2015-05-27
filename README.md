@@ -1,6 +1,10 @@
 # promise-results
 Promise all results of a collection of promises whether they are resolved OR rejected.
 
+[![npm package](https://img.shields.io/npm/v/promise-results.svg?style=flat-square)](https://www.npmjs.org/package/promise-results)
+[![build status](https://img.shields.io/travis/robcolburn/promise-results/master.svg?style=flat-square)](https://travis-ci.org/robcolburn/promise-results)
+[![dependency status](https://img.shields.io/david/robcolburn/promise-results.svg?style=flat-square)](https://david-dm.org/robcolburn/promise-results)
+
 Often we want to accomplish several asyncrounous tasks at once. Usually,
 `Promise.all` does what we want, but it has a couple limitations:
 
