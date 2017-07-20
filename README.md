@@ -20,8 +20,8 @@ flat index.  `promise-results` will handle keyed objects or arrays.
 var resultsOf = require('promise-results');
 var pack = {};
 pack.a = Promise.resolve(2);
-pack.b = a.then(function (r) {
-  return new Promise(funciton (resolve, reject) {
+pack.b = pack.a.then(function (r) {
+  return new Promise(function (resolve, reject) {
     setTimeout(function() {
       resolve(r + 1);
     }, 10);
